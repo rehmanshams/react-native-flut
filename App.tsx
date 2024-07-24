@@ -1,86 +1,56 @@
-import React, { useState } from 'react';
-import { Text, View, StyleSheet, TextInput, Button, Alert } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-
-const Stack = createStackNavigator();
-
-const LoginScreen = ({ navigation }) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
-  const handleLogin = () => {
-    if (email && password) {
-      Alert.alert('Login Success', `Email: ${email}`);
-      navigation.navigate('Home');
-    } else {
-      Alert.alert('Error', 'Please enter both email and password.');
-    }
-  };
-
-  return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Logi</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Email"
-        value={email}
-        onChangeText={setEmail}
-        keyboardType="email-address"
-        autoCapitalize="none"
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Password"
-        value={password}
-        onChangeText={setPassword}
-        secureTextEntry
-      />
-      <Button title="Login" onPress={handleLogin} />
-    </View>
-  );
-};
-
-const HomePage = () => {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Welcome to the Home Page</Text>
-    </View>
-  );
-};
+import React, {useState} from 'react';
+import {StyleSheet, Text, View} from 'react-native';
+import QRCodeScanner from 'react-native-qrcode-scanner';
+import {RNCamera} from 'react-native-camera';
 
 const App = () => {
+  const [data, setData] = useState('Scan Something');
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="Login">
-        <Stack.Screen name="Login" component={LoginScreen} />
-        <Stack.Screen name="Home" component={HomePage} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <QRCodeScanner
+      onRead={({data}) => setData(data)} // Assuming setData is the correct function to update state
+      reactivate={true}
+      reactivateTimeout={500}
+      showMarker={true} // or showMarker if you want it to be true
+      topContent={
+        <View>
+          <Text
+            style={{
+              color: 'black',
+              padding: 20,
+              fontSize: 20,
+              backgroundColor: 'grey',
+              margin: 10,
+            }}>
+            {data}
+          </Text>
+        </View>
+      }
+      bottomContent={
+        <View>
+          <Text>Qr Code Scanner</Text>
+        </View>
+      }
+    />
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
+  centerText: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    fontSize: 18,
+    padding: 32,
+    color: '#777',
+  },
+  textBold: {
+    fontWeight: '500',
+    color: '#000',
+  },
+  buttonText: {
+    fontSize: 21,
+    color: 'rgb(0,122,255)',
+  },
+  buttonTouchable: {
     padding: 16,
-  },
-  text: {
-    fontSize: 32,
-    textAlign: 'center',
-    margin: 10,
-  },
-  input: {
-    width: '100%',
-    height: 40,
-    borderColor: '#ccc',
-    borderWidth: 1,
-    borderRadius: 5,
-    padding: 8,
-    marginVertical: 10,
   },
 });
 
