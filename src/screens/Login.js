@@ -23,7 +23,7 @@ const Login = ({navigation}) => {
     if (email && password) {
       navigation.navigate('Home');
     } else {
-      Alert.alert('Error', 'Please enter both email and password.');
+      Alert.alert('Error', 'Please enter both email and password');
     }
   };
 
