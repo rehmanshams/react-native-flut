@@ -1,16 +1,15 @@
 import React, {useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import QRCodeScanner from 'react-native-qrcode-scanner';
-import {RNCamera} from 'react-native-camera';
 
 const App = () => {
   const [data, setData] = useState('Scan Something');
   return (
     <QRCodeScanner
-      onRead={({data}) => setData(data)} // Assuming setData is the correct function to update state
+      onRead={({data}) => setData(data)}
       reactivate={true}
       reactivateTimeout={500}
-      showMarker={true} // or showMarker if you want it to be true
+      showMarker={true}
       topContent={
         <View>
           <Text
