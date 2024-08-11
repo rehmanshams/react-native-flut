@@ -30,18 +30,34 @@ const Profile = () => {
       } catch (error) {
         console.error(error);
       }
-
-      fetchDeviceInfo();
     };
+
+    fetchDeviceInfo();
   }, []);
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>System Version: {deviceInfo.systemVersion}</Text>
-      <Text style={styles.text}>System Name: {deviceInfo.systemName}</Text>
-      <Text style={styles.text}>Build Number: {deviceInfo.buildNumber}</Text>
-      <Text style={styles.text}>Device ID: {deviceInfo.deviceId}</Text>
-      <Text style={styles.text}>Unique ID: {deviceInfo.uniqueId}</Text>
+      <Text style={styles.heading}>Device Information</Text>
+      <View style={styles.textContainer}>
+        <Text style={styles.text}>System Version:</Text>
+        <Text style={styles.text}> {deviceInfo.systemVersion}</Text>
+      </View>
+      <View style={styles.textContainer}>
+        <Text style={styles.text}>System Name:</Text>
+        <Text style={styles.text}> {deviceInfo.systemName}</Text>
+      </View>
+      <View style={styles.textContainer}>
+        <Text style={styles.text}>Build Number:</Text>
+        <Text style={styles.text}> {deviceInfo.buildNumber}</Text>
+      </View>
+      <View style={styles.textContainer}>
+        <Text style={styles.text}>Device ID:</Text>
+        <Text style={styles.text}> {deviceInfo.deviceId}</Text>
+      </View>
+      <View style={styles.textContainer}>
+        <Text style={styles.text}>Unique ID:</Text>
+        <Text style={styles.text}> {deviceInfo.uniqueId}</Text>
+      </View>
     </View>
   );
 };
@@ -52,11 +68,29 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'center',
     padding: 16,
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 20,
   },
   text: {
     fontSize: 16,
     marginBottom: 8,
     color: 'black',
+  },
+  heading: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 32,
+    color: 'black',
+    textAlign: 'center',
+    marginBottom: 20,
+  },
+  textContainer: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    width: '100%',
+    borderBottomWidth: 2,
   },
 };
 
