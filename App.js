@@ -6,6 +6,7 @@ import {
   CardStyleInterpolators,
   TransitionSpecs,
 } from '@react-navigation/stack';
+import Profile from './src/screens/Profile';
 import ScanScreen from './src/screens/Scan';
 import WelcomePage from './src/screens/Welcome';
 import Login from './src/screens/Login';
@@ -45,6 +46,7 @@ const App = () => {
           <Stack.Screen name="SplashScreen" component={SplashScreen} />
         ) : (
           <>
+            <Stack.Screen name="Profile" component={Profile} />
             <Stack.Screen name="WelcomePage" component={WelcomePage} />
             <Stack.Screen name="Login" component={Login} />
             <Stack.Screen name="SignUp" component={SignUp} />

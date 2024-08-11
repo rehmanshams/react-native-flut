@@ -17,7 +17,9 @@ const BottomNav = ({navigation}) => {
         <View>{bottomNavigationScanIcon}</View>
       </TouchableWithoutFeedback>
       <View>{bottomNavLikeIcon}</View>
-      <View>{bottomNavProfileIcon}</View>
+      <TouchableWithoutFeedback onPress={() => navigation.navigate('Profile')}>
+        <View>{bottomNavProfileIcon}</View>
+      </TouchableWithoutFeedback>
     </View>
   );
 };
